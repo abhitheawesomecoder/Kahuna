@@ -1,4 +1,3 @@
-
 {
   "name": "react-native-kahuna",
   "version": "1.0.0",
@@ -14,6 +13,5 @@
   "license": "",
   "peerDependencies": {
     "react-native": ">=0.41.2"
-
   }
 }
