@@ -1,53 +1,55 @@
+Steps to add react-native-kahuna :
 
-# react-native-kahuna
+IOS :
 
-## Getting started
+step 1) add
+"react-native-kahuna": "git+https://github.com/abhitheawesomecoder/Kahuna.git"
+to package json of your project
+2) fire command react-native link react-native-kahuna
+3) create pod file and add   pod 'Kahuna-Swift' to pod file and fire command pod install
+4) add line [Kahuna launchWithKey:@"58f2fa20810e46afb2e9f62ccbc19bf0"];
+to AppDelegate.m
+5) add header #import <Kahuna/Kahuna.h>
+to AppDelegate.m
+6) add path
+$(PROJECT_DIR)/../node_modules/react-native-kahuna/ios/Frameworks
+to project framework search path
+7) add path $(SRCROOT)/Frameworks
+to package framework search path
 
-`$ npm install react-native-kahuna --save`
-
-### Mostly automatic installation
-
-`$ react-native link react-native-kahuna`
-
-### Manual installation
-
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-kahuna` and add `RNKahuna.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNKahuna.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
-#### Android
-
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNKahunaPackage;` to the imports at the top of the file
-  - Add `new RNKahunaPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-kahuna'
-  	project(':react-native-kahuna').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-kahuna/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-kahuna')
-  	```
-
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1. In Visual Studio add the `RNKahuna.sln` in `node_modules/react-native-kahuna/windows/RNKahuna.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Kahuna.RNKahuna;` to the usings at the top of the file
-  - Add `new RNKahunaPackage()` to the `List<IReactPackage>` returned by the `Packages` method
-
-
-## Usage
-```javascript
+Usage
 import RNKahuna from 'react-native-kahuna';
 
 // TODO: What to do with the module?
 RNKahuna;
-```
-  
+
+Android :
+step 1) add
+"react-native-kahuna": "git+https://github.com/abhitheawesomecoder/Kahuna.git"
+to package json of your project
+2) fire command react-native link react-native-kahuna
+3) add line classpath 'com.google.gms:google-services:3.0.0'
+to {project}/android/build.gradle like this :
+dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.google.gms:google-services:3.0.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+4) add line maven { url "https://kahuna.github.io/kahuna-android/sdk" }
+to {project}/android/build.gradle like this :
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
+        }
+        maven { url "https://kahuna.github.io/kahuna-android/sdk" }
+        google()
+    }
+}
+add   <uses-permission android:name="android.permission.INTERNET" />
+to AndroidManifest.xml
